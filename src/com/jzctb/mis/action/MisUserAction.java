@@ -14,6 +14,34 @@ public class MisUserAction extends MisAction {
 	
 	private static final long serialVersionUID = -8004359458011654761L;
 	
+	private String oldPwd;
+	private String newPwd;
+	private String rNewPwd;
+	
+	public String getOldPwd() {
+		return oldPwd;
+	}
+
+	public void setOldPwd(String oldPwd) {
+		this.oldPwd = oldPwd;
+	}
+
+	public String getNewPwd() {
+		return newPwd;
+	}
+
+	public void setNewPwd(String newPwd) {
+		this.newPwd = newPwd;
+	}
+
+	public String getRNewPwd() {
+		return rNewPwd;
+	}
+
+	public void setRNewPwd(String rNewPwd) {
+		this.rNewPwd = rNewPwd;
+	}
+	
 	public MisUserAction(){
 		user = new MisUserBean();
 		
@@ -47,6 +75,10 @@ public class MisUserAction extends MisAction {
 		return "login";
 	}
 	
+	/**
+	 * 用户ID是否已存在
+	 * @throws IOException
+	 */
 	public void userIsExist() throws IOException{
 		request = ServletActionContext.getRequest();
 		String userid = request.getParameter("userid");
@@ -61,11 +93,38 @@ public class MisUserAction extends MisAction {
 			out.write("0");
 		}
 	}
+	
 	public String changPasswd(){
 		
 		return SUCCESS;
 	}
 	
+	public void chPwd(){
+		HttpServletResponse response = ServletActionContext.getResponse();
+//		response.setCharacterEncoding("UTF-8");
+		
+		logger.debug("   oldPwd = ["+oldPwd+"]");
+		logger.debug("   newPwd = ["+newPwd+"]");
+		logger.debug("  rNewPwd = ["+rNewPwd+"]");
+		
+		try{
+			PrintWriter out = response.getWriter();
+			if(!"111111".equals(oldPwd)){
+				out.write("{\"statusCode\":\"300\",\"message\":\"旧密码不正确\"}");
+				out.close();
+			}else if(!newPwd.equals(rNewPwd)){
+				out.write("{\"statusCode\":\"300\",\"message\":\"两次输入密码不相同\"}");
+				out.close();	
+			}else{
+				out.write("{\"statusCode\":\"200\",\"message\":\"密码修改成功\",\"callbackType\":\"closeCurrent\"}");
+				out.close();
+			}
+		}catch(IOException e){
+			logger.error(e.getMessage());
+		}
+
+	}
+
 	public String Logout() throws Exception{
 		ServletActionContext.getRequest().getSession().setAttribute("user", null);
 		return "logout";

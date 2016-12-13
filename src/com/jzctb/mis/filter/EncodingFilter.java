@@ -8,6 +8,9 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.log4j.Logger;
 // 编码过滤器
 public class EncodingFilter implements Filter {
 
@@ -27,11 +30,9 @@ public class EncodingFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
 		if (!ignore) {
-			if (null == request.getCharacterEncoding()) {
 				request.setCharacterEncoding(charset);
 				response.setCharacterEncoding(charset);
-				response.setContentType("text/html; charset="+charset);
-			}
+//				response.setContentType("text/html; charset="+charset);
 		}
 		chain.doFilter(request, response);
 	}
@@ -40,5 +41,5 @@ public class EncodingFilter implements Filter {
 		charset = null;
 		ignore = false;
 	}
-
+	public static Logger logger = Logger.getLogger(EncodingFilter.class); 
 }

@@ -20,17 +20,21 @@ public class SessionDao extends MisDao{
         List<SessionBean> list = new ArrayList<SessionBean>();
         
         StringBuffer sb = new StringBuffer(getSql(sqlId));
-		sb.append(" where username like upper(?) order by ? ");
-		sb.append("desc".equals(orderDirection) ? "desc" : "asc");
+		sb.append(" where username like upper(?) ");//order by 'sid' desc ");
+		if(!"".equals(orderField)){
+			sb.append("order by " + orderField);
+			sb.append("desc".equals(orderDirection) ? " desc" : " asc");
+		}
 		logger.debug("SQL = ["+sb.toString()+"]");
 		
         try{
         	if(null!=(conn = getConnection(dbName))){
 	        	psm = conn.prepareStatement(sb.toString());
-	        	psm.setString(1, "".equals(username.trim())?"%":username.trim());
-	        	psm.setInt(2, "".equals(orderField) ? 1 : Integer.parseInt(orderField));
+	        	psm.setString(1, "".equals(username)?"%":username);
+	        	//psm.setString(2, "".equals(orderField) ? "username" : orderField);
 	        	rs = psm.executeQuery();
 	        	while(rs.next()){
+	        		//logger.debug("sid = ["+rs.getString(1)+"]");
 	        		SessionBean obj = new SessionBean();
 	        		obj.setSid(rs.getString(1));
 	                obj.setSerial(rs.getString(2));
@@ -56,6 +60,31 @@ public class SessionDao extends MisDao{
         }
         return list;
     }
+	
+	public String kill(String sid, String serial){
+		String sql = "alter system kill session '"+sid+","+serial+"'";
+		logger.debug("kill session sql = ["+sql+"]");
+		Connection conn = null;
+		PreparedStatement psm = null;
+		String msg = "";
+		try{
+			if(null!=(conn = getConnection(dbName))){
+				psm = conn.prepareStatement(sql);
+				psm.execute();
+				msg = "0000结束会话成功";
+				logger.debug(msg);
+			}
+        	
+        }catch(SQLException e){
+        	msg = "0001结束会话失败："+e.toString();
+        	logger.error(e.toString());
+        }finally{
+			closePreparedStatement(psm);
+			closeConnect(conn);
+        }
+		logger.debug(msg);
+		return msg;
+	}
 	private String dbName = "";
 	private String sqlId = "";
 

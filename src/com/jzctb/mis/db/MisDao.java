@@ -53,6 +53,10 @@ public class MisDao {
 		return ConnectManager.getConnection(dbname);
 	}
 	
+	public Connection getConnection(String username, String password,String ip, int port,String dbname) throws SQLException{
+		return ConnectManager.getConnection(username,password,ip,port,dbname);
+	}
+	
 	public void closeConnect(Connection conn){
 		if(conn!=null){
 			try{

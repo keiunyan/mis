@@ -19,6 +19,7 @@
 <script type="text/javascript">
 	var DEBUG = true;  // debug
 	$(document).ready(function() {
+		
 		if(DEBUG){
 			$('#userid').val("600743");
 			$('#password').val("600743");
@@ -26,6 +27,20 @@
 		}
 		
 		$('#userid').select();
+		
+		$("#userid").on("keydown",function(event){
+			if(event.keyCode==13){
+				$('#password').select();
+				return false;
+			}
+		});
+		
+		$("#password").on("keydown",function(event){
+			if(event.keyCode==38){
+				$('#userid').select();
+			}
+		});
+
 	});
 	/*
 	$(function(){
@@ -42,6 +57,7 @@
 		});
 	});
 	*/
+	
 </script>
 
 </head>
@@ -68,13 +84,11 @@
 				<s:form action="Login" method="post" name="loginform" id="loginform" namespace="/">
 					<p>
 						<label>用户名：</label>
-						<input type="text" name="userid" size="20" class="login_input" id="userid" value="${param.userid }" 
-							onkeydown="if(event.keyCode==13){$('#password').select();return false;}" />
+						<input type="text" name="userid" size="20" class="login_input" id="userid" value="${param.userid }" />
 					</p>
 					<p>
 						<label>密码：</label>
-						<input type="password" name="password" size="20" class="login_input" id="password" 
-							onkeydown="if(event.keyCode==38){$('#userid').select();}"/>
+						<input type="password" name="password" size="20" class="login_input" id="password" />
 					</p>
 					<div class="login_bar">
 						<input class="sub" type="submit" value=" " />

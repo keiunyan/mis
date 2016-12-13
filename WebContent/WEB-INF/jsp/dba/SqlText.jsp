@@ -32,7 +32,7 @@
 	        if(rs.next()) {
 	        	ResultSetMetaData rsmd = rs.getMetaData();
 	        	for(int i=0; i<rsmd.getColumnCount(); i++) {
-	        		out.print("<tr><td align='right'>"+rsmd.getColumnLabel(i+1)+"&nbsp;</td><td>&nbsp;"+rs.getString(i+1)+"</td></tr>");
+	        		out.print("<tr><td align='right' style='color:green'>"+rsmd.getColumnLabel(i+1)+"&nbsp;</td><td>&nbsp;"+rs.getString(i+1)+"</td></tr>");
 				}
 	        	ConnectManager.closePreparedStatement(psm);
 	        }else{
@@ -47,7 +47,7 @@
 	            }
 	            String sqltext = sb.toString();
 	            if(!"".equals(sqltext)){
-	            	out.print("<tr><td align='right'>SQL_TEXT&nbsp;</td><td>"+sqltext+"</td></tr>");
+	            	out.print("<tr><td align='right' style='color:green'>SQL_TEXT&nbsp;</td><td>"+sqltext+"</td></tr>");
 	            }else{
 	            	out.print("<tr><td>未找到相关信息</td></tr>");
 	            }

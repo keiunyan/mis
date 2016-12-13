@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
 import org.apache.log4j.Logger;
+
 import com.jzctb.mis.encrypt.*;
 
 public class MisAction extends ActionSupport {
@@ -84,8 +85,9 @@ public class MisAction extends ActionSupport {
      * @param date2 - 日期2
      * @param datefmt - 日期格式：yyyyMMdd
      * @return 两个日期相差的天数
+     * @throws ParseException 
      */
-    public static long datecmp(String date1, String date2, String datefmt){
+    public static long datecmp(String date1, String date2, String datefmt) throws ParseException{
     	DateFormat df = new SimpleDateFormat(datefmt);
     	Calendar cal = Calendar.getInstance();
     	long time1=0,time2=0;
@@ -98,6 +100,7 @@ public class MisAction extends ActionSupport {
         } catch (ParseException e) {
             //e.printStackTrace();
             logger.error(e.toString());
+            throw e;
         }
     	return (time1-time2)/86400;
     }
@@ -139,22 +142,26 @@ public class MisAction extends ActionSupport {
 	 * @return 加密或解密后字符串
 	 */
 	public String passwd(String str, String key, int mode){
+		
+/*		try {
+			DESUtil.main(null);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+*/		
 		DESUtil des = new DESUtil(key);
-		if(mode==0){
-			try{
+		try{
+			if(mode==0)
 				return des.encryptStr(str);
-			}catch(RuntimeException e){
-				logger.error(e.getMessage());
-			}
-		} else{
-			try{
+			else
 				return des.decryptStr(str);
-			}catch(RuntimeException e){
-				logger.error(e.getMessage());
-			}
-		}	
+		}catch(RuntimeException e){
+			logger.error(e.getMessage());
+		}
 		return null;
 	}
+	
 	public void setBeginDate(String value){this.beginDate=value;}
 	public void setEndDate(String value){this.endDate=value;}
 	public String getBeginDate(){return beginDate;}   // 起始日期
@@ -170,6 +177,22 @@ public class MisAction extends ActionSupport {
 	protected String dbName = "";
 	
 	protected String orderField = "";
+	public String getOrderField() {
+		return orderField;
+	}
+
+	public void setOrderField(String orderField) {
+		this.orderField = orderField;
+	}
+
+	public String getOrderDirection() {
+		return orderDirection;
+	}
+
+	public void setOrderDirection(String orderDirection) {
+		this.orderDirection = orderDirection;
+	}
+
 	protected String orderDirection = "";
 }
 

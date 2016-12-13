@@ -1,5 +1,6 @@
 package com.jzctb.mis.action;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -49,11 +50,15 @@ public class AlipaySumAction extends MisAction{
 		{
 			this.addActionError("请输入起始日期和结束日期");
 		}else {
-			int d = (int) MisAction.datecmp(endDate, beginDate, "yyyyMMdd");
-			if(d<0){
-				this.addActionError("起始日期不能大于结束日期");
-			}else if(d>30){
-				this.addActionError("日期区间不能大于1个月（31天）");
+			try{
+				int d = (int) MisAction.datecmp(endDate, beginDate, "yyyyMMdd");
+				if(d<0){
+					this.addActionError("起始日期不能大于结束日期");
+				}else if(d>30){
+					this.addActionError("日期区间不能大于1个月（31天）");
+				}
+			}catch(ParseException e){
+				this.addActionError("无效日期格式");
 			}
 		}
 	}

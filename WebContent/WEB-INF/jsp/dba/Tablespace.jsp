@@ -43,7 +43,9 @@
 	<div class="panelBar">
 		<ul class="toolBar">
 			<li class="line">line</li>
-			<li><a class="icon" href="#" target="dwzExport" targetType="navTab" title="实要导出这些记录吗?"><span>导出EXCEL</span></a></li>
+			<li><a class="icon" href="javascript:void()" target="dwzExport" targetType="navTab" title="实要导出这些记录吗?"><span>导出EXCEL</span></a></li>
+			<li class="line">line</li>
+			<li><a class="edit" href="javascript:void()"  target="navTab"><span>添加数据文件</span></a></li>
 			<li class="line">line</li>
 		</ul>
 	</div>

@@ -16,6 +16,9 @@
 	<s:form action="SessionSearch.do" method="post" theme="simple" rel="pagerForm"  class="pageForm"
 	        namespace="/admin" onsubmit="return navTabSearch(this);">
 		<input type="hidden" name="pageSize" value="${pageSize}" />
+		<input type="hidden" name="orderField" value="${orderField }"/>
+		<input type="hidden" name="orderDirection" value="${orderDirection }"/>
+		
 		<div class="searchBar">
 			<table class="searchContent">
 				<tr>
@@ -44,7 +47,9 @@
 	<div class="panelBar">
 		<ul class="toolBar">
 			<li class="line">line</li>
-			<li><a class="icon" href="#" target="dwzExport" targetType="navTab" title="实要导出这些记录吗?"><span>导出EXCEL</span></a></li>
+			<li><a class="icon" href="javascript:void()" target="dwzExport" targetType="navTab" title="实要导出这些记录吗?"><span>导出EXCEL</span></a></li>
+			<li class="line">line</li>
+			<li><a class="delete" href="admin/SessionkillSession.do?dbName=${dbName}&sid={session_id}" target="ajaxTodo" warn="请选择要结束的会话" title="确认结束会话?"><span>结束会话</span></a></li>
 			<li class="line">line</li>
 		</ul>
 	</div>
@@ -53,10 +58,10 @@
 	<thead>
 	<tr>
 	    <th width="40">序号</th>
-		<th orderField="1" width="120" class="${param.orderDirection }">SID</th>
+		<th width="120" id="session_sid" orderField="sid">SID</th>
 		<th width="60">SERIAL</th>
-		<th width="100">SQL_ID</th>
-		<th orderField="4" class="asc" width="100">USER_NAME</th>
+		<th width="100" id="session_sql_id" orderField="sql_id">SQL_ID</th>
+		<th width="100" id="session_username" orderField="username">USER_NAME</th>
 		<th width="100">SECONDS_IN_WAIT</th>
 	    <th width="100">COMMAND</th>
 		<th width="120">MACHINE</th>
@@ -75,20 +80,20 @@
 			<c:param name="sqlid" value="${sqlId }" />
 			<c:param name="schema" value="${userName }" />
 		</c:url>
-		<tr>
-            <td align="right"><s:property value="rowNum"/></td>
-            <td align="right" ><s:property value="sid"/></td>
-            <td align="right" ><s:property value="serial"/></td>
-            <td><a href="${SqlText }" target="navTab" title="SQL_TEXT" rel="SQL_TEXT"><s:property value="sqlId"/></a></td>
-            <td><s:property value="userName"/></td>
-            <td><s:property value="secInWait"/></td>
-            <td><s:property value="command"/></td>
-            <td><s:property value="machine"/></td>
-            <td><s:property value="osUser"/></td>
-            <td><s:property value="status"/></td>
-            <td><s:property value="module"/></td>
-            <td><s:property value="action1"/></td>
-            <td><s:property value="clientInfo"/></td>
+		<tr target="session_id" rel="${sid},${serial}">
+            <td align="right"><c:out value="${row}"/></td>
+            <td align="right" >${sid }</td>
+            <td align="right" >${serial }</td>
+            <td><a href="${SqlText }" target="navTab" title="SQL_INFO" rel="SQL_INFO" style="color:red">${sqlId }</a></td>
+            <td>${userName }</td>
+            <td>${secInWait }</td>
+            <td>${command }</td>
+            <td>${machine }</td>
+            <td>${osUser }</td>
+            <td>${status }</td>
+            <td>${module }</td>
+            <td>${action1 }</td>
+            <td>${clientInfo }</td>
 		</tr>
 		</s:iterator>
 	</tbody>
@@ -102,3 +107,25 @@
 		<div class="pagination" targetType="navTab" totalCount="${totalRows}" numPerPage="${pageSize}" currentPage="${pageNum}" pageNumShown="10"></div>
 	</div>
 </div>
+
+<script type="text/javascript">
+// 	$("#session_sid").attr("orderField","sid");
+//	$("#session_sql_id").attr("orderField","sql_id");
+	switch("${orderField }"){
+	case "sid":
+		$("#session_sid").addClass("${param.orderDirection }");
+		break;
+	case "sql_id":
+		$("#session_sql_id").addClass("${param.orderDirection }");
+		break;
+	case "username":
+		$("#session_username").addClass("${param.orderDirection }");
+		break;
+	default:
+		$("#session_sql_id").addClass("asc");
+	}
+	
+
+	//$("#session_sid").addClass("${param.orderDirection }");
+	//$("#session_sql_id").addClass("${param.orderDirection }");
+</script>

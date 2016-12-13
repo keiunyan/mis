@@ -1,5 +1,7 @@
 package com.jzctb.mis.action;
 
+import com.jzctb.mis.encrypt.DESUtil;
+
 public class EncryptAction extends MisAction {
 
 	/**
@@ -14,7 +16,21 @@ public class EncryptAction extends MisAction {
 		logger.debug("   mode = ["+mode+"]");
 		logger.debug("    key = ["+key+"]");
 		if(!("".equals(string1)||null==string1)){
-			string2 = passwd(string1, key, Integer.parseInt(mode));
+			//string2 = passwd(string1, key, Integer.parseInt(mode));
+			
+			DESUtil des = new DESUtil(key);
+			try{
+				if("0".equals(mode)){
+					string2 = des.encryptStr(string1);
+					hexString = des.hexString;
+				}
+				else{
+					string2 = des.decryptStr(string1);
+					hexString = des.hexString;
+				}
+			}catch(RuntimeException e){
+				logger.error(e.getMessage());
+			}		
 			logger.debug("string2 = ["+string2+"]");
 		}
 		return SUCCESS;
@@ -31,7 +47,7 @@ public class EncryptAction extends MisAction {
 		super.validate();
 	}
 
-
+	
 
 	public String getString1() {
 		return string1;
@@ -64,9 +80,17 @@ public class EncryptAction extends MisAction {
 		this.key = key;
 	}
 
+	public String getHexString() {
+		return hexString;
+	}
+
+	public void setHexString(String hexString) {
+		this.hexString = hexString;
+	}
+
 	private String string1 = "";
 	private String string2 = "";
 	private String key     = "";
 	private String mode    = "0";
-
+	private String hexString = "";
 }

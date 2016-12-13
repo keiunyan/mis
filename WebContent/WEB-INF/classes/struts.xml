@@ -46,6 +46,10 @@
 			<result name="success">/WEB-INF/jsp/mis/AlipayDetail.jsp</result>
 			<result name="input">/WEB-INF/jsp/mis/AlipayDetail.jsp</result>
 		</action>
+		
+		<action name="id*" class="com.jzctb.mq.IDVerification" method="{1}" >
+			<result></result>
+		</action>
 	</package>
 	
 	<package name="admin" namespace="/admin" extends="struts-default">

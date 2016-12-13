@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.action.extension" value="do"/>
+	<constant name="struts.ui.theme" value="simple" />
+	<constant name="struts.locale" value="zh_CN"/> 
+	<constant name="struts.i18n.encoding" value="UTF-8"/>
+	
+	<package name="default" namespace="/" extends="struts-default">
+		<!-- 以下4行配置默认的action处理，当找不到action的时候就跳转到 undefined.jsp页面 -->
+		<default-action-ref name="undefined"></default-action-ref>
+		<action name="undefined">
+			<result>/undefined.jsp</result>
+		</action>
+		
+		<action name="Login" class="com.jzctb.mis.action.MisUserAction" method="Login">
+			<result name="login">/WEB-INF/jsp/index.jsp</result>
+			<result name="logout">/login.jsp</result>
+		</action>
+		
+		<action name="Logout" class="com.jzctb.mis.action.MisUserAction" method="Logout">
+			<result name="logout">/login.jsp</result>
+		</action>
+		
+		<action name="chPwdDlg" class="com.jzctb.mis.action.MisUserAction">
+			<result name="input">/WEB-INF/jsp/chpwd.jsp</result>
+		</action>
+		
+		<action name="chPwd" class="com.jzctb.mis.action.MisUserAction" method="chPwd"/>
+		
+		<action name="Encrypt" class="com.jzctb.mis.action.EncryptAction">
+			<result name="success">/WEB-INF/jsp/Encrypt.jsp</result>
+			<result name="input">/WEB-INF/jsp/Encrypt.jsp</result>
+		</action>
+		
+	</package>
+	
+	<package name="view" namespace="/view" extends="struts-default">		
+		<default-action-ref name="undefined"></default-action-ref>
+		<action name="undefined">
+			<result>/undefined.jsp</result>
+		</action>
+
+		<action name="AlipaySum*" class="com.jzctb.mis.action.AlipaySumAction" method="{1}">
+			<result name="success">/WEB-INF/jsp/mis/AlipaySum.jsp</result>
+			<result name="input">/WEB-INF/jsp/mis/AlipaySum.jsp</result>
+		</action>
+		
+		<action name="AlipayDetail*" class="com.jzctb.mis.action.AlipayDetailAction" method="{1}">
+			<result name="success">/WEB-INF/jsp/mis/AlipayDetail.jsp</result>
+			<result name="input">/WEB-INF/jsp/mis/AlipayDetail.jsp</result>
+		</action>
+		
+		<action name="UnipaySum*" class="com.jzctb.mis.action.UnipaySumAction" method="{1}">
+			<result name="success">/WEB-INF/jsp/mis/UnipaySum.jsp</result>
+			<result name="input">/WEB-INF/jsp/mis/UnipaySum.jsp</result>
+		</action>
+		
+		<action name="id*" class="com.jzctb.mq.IDVerification" method="{1}" >
+			<result></result>
+		</action>
+
+		<action name="*Sum">
+			<result>/WEB-INF/jsp/mis/{1}Sum.jsp</result>
+		</action>
+		
+		<action name="*Detail">
+			<result>/WEB-INF/jsp/mis/{1}Detail.jsp</result>
+		</action>
+
+	</package>
+	
+	<package name="admin" namespace="/admin" extends="struts-default">
+		<default-action-ref name="undefined"></default-action-ref>
+		<action name="undefined">
+			<result>/undefined.jsp</result>
+		</action>
+		
+		<action name="Tablespace*" class="com.jzctb.mis.action.TablespaceAction" method="{1}">
+			<result name="success">/WEB-INF/jsp/dba/Tablespace.jsp</result>
+			<result name="input">/WEB-INF/jsp/dba/Tablespace.jsp</result>
+		</action>
+		
+		<action name="Diskgroup*" class="com.jzctb.mis.action.DiskgroupAction" method="{1}">
+			<result name="success">/WEB-INF/jsp/dba/Diskgroup.jsp</result>
+			<result name="input">/WEB-INF/jsp/dba/Diskgroup.jsp</result>
+		</action>
+		
+		<action name="Datafile*" class="com.jzctb.mis.action.DatafileAction" method="{1}">
+			<result name="success">/WEB-INF/jsp/dba/Datafile.jsp</result>
+			<result name="input">/WEB-INF/jsp/dba/Datafile.jsp</result>
+		</action>
+		
+		<action name="DBUser*" class="com.jzctb.mis.action.DBUserAction" method="{1}">
+			<result name="success">/WEB-INF/jsp/dba/DBUser.jsp</result>
+			<result name="input">/WEB-INF/jsp/dba/DBUser.jsp</result>
+		</action>
+		
+		<action name="Locked*" class="com.jzctb.mis.action.LockedAction" method="{1}">
+			<result name="success">/WEB-INF/jsp/dba/Locked.jsp</result>
+			<result name="input">/WEB-INF/jsp/dba/Locked.jsp</result>
+		</action>
+		
+		<action name="Session*" class="com.jzctb.mis.action.SessionAction" method="{1}">
+			<result name="success">/WEB-INF/jsp/dba/Session.jsp</result>
+			<result name="input">/WEB-INF/jsp/dba/Session.jsp</result>
+		</action>
+		
+		<action name="CustomQuery*" class="com.jzctb.mis.action.CustomQueryAction" method="{1}">
+			<result name="success">/WEB-INF/jsp/dba/CustomQuery.jsp</result>
+			<result name="input">/WEB-INF/jsp/dba/CustomQuery.jsp</result>
+		</action>
+		
+		<action name="findSql">
+			<result>/WEB-INF/jsp/dba/SqlText.jsp</result>
+		</action>
+		
+	</package>
+	
+	<package name="test" namespace="/test" extends="struts-default">
+		<action name="Test*" class="com.jzctb.mis.action.TestAction" method="{1}">
+			<result name="input">/WEB-INF/jsp/test.jsp</result>
+		</action>
+				
+	</package>
+		
+</struts>

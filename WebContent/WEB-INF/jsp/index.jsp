@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
  
 <!DOCTYPE html>
 <html>
@@ -77,7 +79,7 @@ $(function(){
 					<!-- <li><a>当前用户：${sessionScope.user.userid}</a></li>  -->
 					<!-- <li><a>当前用户：<s:property value="%{#session.user.userid}" /></a></li>  -->
 					<li><a>当前用户：<s:property value="user.userid" /></a></li>
-					<li><a href="changepwd.html" target="dialog" width="600">修改密码</a></li>
+					<li><a href="chPwdDlg.do" target="dialog" width="600">修改密码</a></li>
 					<li><a href="Logout.do">退出</a></li>
 				</ul>
 				<ul class="themeList" id="themeList">
@@ -113,8 +115,8 @@ $(function(){
 								<ul>
 									<li><a href="view/AlipaySum.do" target="navTab" rel="AlipaySum">支付宝交易统计</a></li>
 									<li><a href="view/AlipayDetail.do" target="navTab" rel="AlipayDetail">支付宝交易明细</a></li>
-									<li><a href="view/UnionpaySum.do" target="navTab" rel="Unionpay">银联在线</a></li>
-									<li><a href="view/UnionpaySum.do" target="navTab" rel="Unionpay">UnionPay</a></li>
+									<li><a href="view/UnipaySum.do" target="navTab" rel="UnipaySum">银联在线交易统计</a></li>
+									<li><a href="view/UnipaySum.do" target="navTab" rel="UnipaySum">UnionPay</a></li>
 								</ul>
 							</li>
 							
@@ -128,11 +130,17 @@ $(function(){
 									<li><a href="view/undefined" >水费明细</a></li>
 									<li><a href="view/undefined" >医疗交易</a></li>
 								</ul>
-							</li>									
+							</li>
+							<li><a>代发工资查询</a>
+								<ul>
+									<li><a href="view/DaifaSum.do" target="navTab" rel="DaifaSum">代发工资统计</a></li>
+									<li><a href="view/DaifaDetail.do" target="navTab" rel="DaifaDetail">代发工资明细</a></li>
+								</ul>
+							</li>								
 						</ul>
 					</div>
 					
-					<!-- 角色为0管理员时加载管理员菜单 -->
+					<!-- ↓↓↓↓↓↓↓↓角色为0管理员时加载管理员菜单↓↓↓↓↓↓↓↓ -->
 					<c:if test="${sessionScope.user.rule==0}"> 
 						<div class="accordionHeader">
 							<h2><span>Folder</span>DBA工具</h2>
@@ -145,10 +153,18 @@ $(function(){
 								<li><a href="admin/DBUser.do" target="navTab" rel="DBUser">用户</a></li>
 								<li><a href="admin/Session.do" target="navTab" rel="Session">会话</a></li>
 								<li><a href="admin/Locked.do" target="navTab" rel="Locked">锁</a></li>
+								
+							<li><a>高级查询</a>
+								<ul>
+									<li><a href="admin/CustomQuery.do" target="navTab" rel="CustomQuery">自定义查询</a></li>
+								</ul>
+							</li>
+								
 							</ul>
+							
 						</div>
 					</c:if>
-					<!-- 角色为0管理员时加载管理员菜单 -->
+					<!-- ↑↑↑↑↑↑↑↑角色为0管理员时加载管理员菜单↑↑↑↑↑↑↑↑ -->
 					
 					<!-- 以下为测试用的页面 -->
 					<c:if test="${sessionScope.user.rule==0}">

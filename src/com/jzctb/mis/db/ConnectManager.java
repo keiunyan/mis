@@ -72,7 +72,7 @@ public class ConnectManager{
     			String info = String.format("dburl=[%s] username=[%s] passwd=[%s]",dburl,username,"********");
     			logger.debug(info);
     					    	
-		    	return DriverManager.getConnection(dburl, username, passwd);  			
+		    	return DriverManager.getConnection(dburl, username, passwd);
     		}else{
     			return null;
     		}
@@ -87,6 +87,23 @@ public class ConnectManager{
 		return null;
     }
     
+    /**
+     * 根据用户名、密码、数据库地址获取连接
+     * @param username - 用户名
+     * @param password - 密码
+     * @param ip       - 数据库IP地址 
+     * @param port     - 数据库端口
+     * @param dbname   - 数据库名称SID
+     * @return <code>Connection</code>
+     * @throws SQLException 
+     */
+    public static Connection getConnection(String username, String password,String ip, int port,String dbname) throws SQLException{
+    	Connection conn = null;
+    	String dburl = String.format("jdbc:oracle:thin:@//%s:%d/%s", ip,port,dbname );
+    	conn =  DriverManager.getConnection(dburl, username, password);
+		return conn;
+	}
+    
     /***
      * 关闭数据库连接
      * @param conn - 已打开的数据库连接
@@ -95,11 +112,11 @@ public class ConnectManager{
     	try{
     		if(conn!=null){
     			conn.close();
-    			conn = null;
     		}
     	}catch(SQLException e){
     		e.printStackTrace();
     	}
+		conn = null;    	
     }
     
     /***

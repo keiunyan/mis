@@ -21,14 +21,17 @@ public class TablespaceAction extends MisAction{
 	}
 	
 	public String Search() throws Exception{
-
+		logger.debug("tablespaceName = ["+tablespaceName+"]");
 		TablespaceDao tablespaceDao = new TablespaceDao(dbName);
 		list = tablespaceDao.Search(pageNum, pageSize, tablespaceName);
 		logger.debug("list.size = ["+list.size()+"]");
 		totalRows  = tablespaceDao.totalRows;
 		return "success";
 	}
-
+	
+	public void addDatafile(){
+		
+	}
 
 	public String getTablespaceName() {
 		return tablespaceName;

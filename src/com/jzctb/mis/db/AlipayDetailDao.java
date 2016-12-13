@@ -208,5 +208,18 @@ public class AlipayDetailDao extends MisDao{
         
         return list;
     }
-
+	
+	/**
+	 * 支付宝交易实时查询
+	 * @param pageNum
+	 * @param pageSize
+	 * @param params
+	 * @return
+	 */
+	public List<AlipayDetailBean> realSearch(int pageNum, int pageSize, Map<String,String> params){ 
+		List<AlipayDetailBean> list = new ArrayList<AlipayDetailBean>();
+		String sql = "select * from v_alipaydetail_real t where 1=1 ";
+		
+		return list;
+	}
 }

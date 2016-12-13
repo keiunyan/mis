@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<error>
+	<err code="0000">
+		<msg>用户登录成功</msg>
+	</err>
+	<err code="1001">
+		<msg>用户名不存在</msg>
+	</err>
+	<err code="1002">
+		<msg>密码不正确</msg>
+	</err>
+	<err code="1003">
+		<msg>用户处于锁定状态，禁止登录</msg>
+	</err>
+
+</error>
