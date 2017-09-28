@@ -50,6 +50,11 @@
 		<action name="id*" class="com.jzctb.mq.IDVerification" method="{1}" >
 			<result></result>
 		</action>
+		
+		<action name="Query*">
+			<result>/WEB-INF/jsp/mis/Query{1}.jsp</result>
+		</action>
+
 	</package>
 	
 	<package name="admin" namespace="/admin" extends="struts-default">

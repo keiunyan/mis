@@ -48,7 +48,7 @@
 					<td>
 						<label>交易类型：</label>
 						<select name="trancode" class="required combox">
-							<option value="" <%if("".equals(transtat)) out.print("selected");%> > 全部</option>
+							<option value="" <%if("".equals(trancode)) out.print("selected");%> > 全部</option>
 							<option value="2802" <%if("2802".equals(trancode)) out.print("selected");%> >支付</option>
 							<option value="2803" <%if("2803".equals(trancode)) out.print("selected");%> >退款</option>
 						</select>

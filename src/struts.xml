@@ -69,6 +69,10 @@
 		<action name="*Detail">
 			<result>/WEB-INF/jsp/mis/{1}Detail.jsp</result>
 		</action>
+		
+		<action name="Query*">
+			<result>/WEB-INF/jsp/mis/Query{1}.jsp</result>
+		</action>
 
 	</package>
 	

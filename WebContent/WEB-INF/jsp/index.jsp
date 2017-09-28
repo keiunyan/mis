@@ -116,7 +116,7 @@ $(function(){
 									<li><a href="view/AlipaySum.do" target="navTab" rel="AlipaySum">支付宝交易统计</a></li>
 									<li><a href="view/AlipayDetail.do" target="navTab" rel="AlipayDetail">支付宝交易明细</a></li>
 									<li><a href="view/UnipaySum.do" target="navTab" rel="UnipaySum">银联在线交易统计</a></li>
-									<li><a href="view/UnipaySum.do" target="navTab" rel="UnipaySum">UnionPay</a></li>
+									<li><a href="view/Query1001.do" target="navTab" rel="Query1001">大小额笔数查询</a></li>
 								</ul>
 							</li>
 							

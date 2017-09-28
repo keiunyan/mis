@@ -5,6 +5,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
  
 <%@ include file="dbList.jsp"%>
+<%
+	String accountstatus = request.getParameter("accountstatus");
+%>
 
 <form id="pagerForm" method="post" action="DBUserSearch.do">
 	<input type="hidden" name="pageNum" value="${model.pageNum}" />
@@ -27,6 +30,17 @@
 					<td><s:textfield name="username" maxlength="32" size="32"/><span class="info">忽略大小写。如需模糊查询，请使用"%"。</span></td>
 					<td></td>
 				</tr>
+				<tr>
+					<td>状态</td>
+					<td>
+						<select name="accountstatus" class="required combox">
+							<option value="" <%if("".equals(accountstatus)) out.print("selected");%> > 全部</option>
+							<option value="OPEN" <%if("OPEN".equals(accountstatus)) out.print("selected");%> >OPEN</option>
+						</select>
+					</td>
+					<td></td>
+				</tr>
+			
 			</table>
 		
 			<div class="subBar">

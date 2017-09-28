@@ -23,7 +23,7 @@
 		if(DEBUG){
 			$('#userid').val("600743");
 			$('#password').val("600743");
-			$('#loginform').submit();
+			//$('#loginform').submit();
 		}
 		
 		$('#userid').select();
