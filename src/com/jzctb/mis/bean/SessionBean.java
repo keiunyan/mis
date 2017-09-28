@@ -4,6 +4,7 @@ public class SessionBean{
 
     public SessionBean(){}
 
+    public void setInstid(String value){instid=value;}
     public void setSid(String value){sid=value;}
     public void setSerial(String value){serial=value;}
     public void setSqlId(String value){sqlId=value;}
@@ -17,6 +18,7 @@ public class SessionBean{
     public void setAction1(String value){action1=value;}
     public void setClientInfo(String value){clientInfo=value;}
     
+    public String getInstid(){return instid;}
 	public String getSid(){return sid;}
     public String getSerial(){return serial;}
     public String getSqlId(){return sqlId;}
@@ -30,7 +32,7 @@ public class SessionBean{
     public String getAction1(){return action1;}
     public String getClientInfo(){return clientInfo;}
     
-
+    private String instid="";
 	private String sid="";
     private String serial="";
 	private String sqlId="";

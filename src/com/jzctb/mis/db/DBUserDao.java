@@ -17,19 +17,21 @@ public class DBUserDao extends MisDao{
 	}
 
     // 支付宝交易统计
-	public List<DBUserBean> Search(int pageNum, int pageSize, String username) throws SQLException{
+	public List<DBUserBean> Search(int pageNum, int pageSize, String username, String accountStatus) throws SQLException{
         Connection conn = null;
         PreparedStatement psm = null;
 		ResultSet rs = null;
 		
         List<DBUserBean> list = new ArrayList<DBUserBean>();
         	
-        String sql = getSql(sqlId) + " where username like upper(?) order by username";
+        String sql = getSql(sqlId) + " where username like upper(?) and account_status like ? order by username";
         logger.debug("SQL = ["+sql+"]");
         try{
         	if(null!=(conn = getConnection(dbName))){
         		psm = conn.prepareStatement(sql);
         		psm.setString(1, "".equals(username)?"%":username);
+        		psm.setString(2, "".equals(accountStatus)?"%":accountStatus);
+        		
         		rs = psm.executeQuery();
 	            while(rs.next()){
 	            	DBUserBean obj = new DBUserBean();

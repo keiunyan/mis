@@ -48,6 +48,7 @@ public class SessionDao extends MisDao{
 	                obj.setModule(rs.getString(10));
 	                obj.setAction1(rs.getString(11));
 	                obj.setClientInfo(rs.getString(13));
+	                obj.setInstid(rs.getString(15));
 	        		list.add(obj);
 	        	}
         	}

@@ -54,11 +54,12 @@
 		</ul>
 	</div>
 
-	<table class="table" asc="asc" desc="desc" width="1400" layoutH="162">
+	<table class="table" asc="asc" desc="desc" width="1440" layoutH="162">
 	<thead>
 	<tr>
 	    <th width="40">序号</th>
-		<th width="120" id="session_sid" orderField="sid">SID</th>
+	    <th width="40">实例ID</th>
+		<th width="60" id="session_sid" orderField="sid">SID</th>
 		<th width="60">SERIAL</th>
 		<th width="100" id="session_sql_id" orderField="sql_id">SQL_ID</th>
 		<th width="100" id="session_username" orderField="username">USER_NAME</th>
@@ -82,6 +83,7 @@
 		</c:url>
 		<tr target="session_id" rel="${sid},${serial}">
             <td align="right"><c:out value="${row}"/></td>
+            <td align="right" >${Instid }</td>
             <td align="right" >${sid }</td>
             <td align="right" >${serial }</td>
             <td><a href="${SqlText }" target="navTab" title="SQL_INFO" rel="SQL_INFO" style="color:red">${sqlId }</a></td>

@@ -5,8 +5,13 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
  
 <%@ include file="dbList.jsp"%>
+
+<!-- 
+<c:set var="accountStatus" value="${param.accountStatus}" scope="request" />
+ -->
 <%
-	String accountstatus = request.getParameter("accountstatus");
+	String accountStatus = request.getParameter("accountStatus");
+	if(accountStatus==null) accountStatus="";
 %>
 
 <form id="pagerForm" method="post" action="DBUserSearch.do">
@@ -27,15 +32,15 @@
 				</tr>
 				<tr>
 					<td>用户名 </td>
-					<td><s:textfield name="username" maxlength="32" size="32"/><span class="info">忽略大小写。如需模糊查询，请使用"%"。</span></td>
+					<td><s:textfield name="userName" maxlength="32" size="32"/><span class="info">忽略大小写。如需模糊查询，请使用"%"。</span></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td>状态</td>
 					<td>
-						<select name="accountstatus" class="required combox">
-							<option value="" <%if("".equals(accountstatus)) out.print("selected");%> > 全部</option>
-							<option value="OPEN" <%if("OPEN".equals(accountstatus)) out.print("selected");%> >OPEN</option>
+						<select name="accountStatus" class="required combox">
+							<option value="" <%if("".equals(accountStatus)) out.print("selected");%> > 全部</option>
+							<option value="OPEN" <%if("OPEN".equals(accountStatus)) out.print("selected");%> >OPEN</option>
 						</select>
 					</td>
 					<td></td>

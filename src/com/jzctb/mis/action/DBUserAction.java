@@ -25,20 +25,23 @@ public class DBUserAction extends MisAction{
 	
 	public String Search() throws Exception{
 		DBUserDao dbUserDao = new DBUserDao(dbName);
-        list = dbUserDao.Search(pageNum, pageSize, username.trim());
+        list = dbUserDao.Search(pageNum, pageSize, userName.trim(), accountStatus);
         totalRows = dbUserDao.totalRows;
 
 		return "success";
 	}
 
-	public String getUsername() {
-		return username;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUserName(String value) {
+		this.userName = value;
 	}
-
+	public String getAccountStatus(){return this.accountStatus;}
+	public void setAccountStatus(String value){this.accountStatus=value;}
+	
 	private List<DBUserBean> list = null;
-	private String username;
+	private String userName;
+	private String accountStatus;
 }

@@ -37,8 +37,10 @@ public class SessionAction extends MisAction{
 		Map<String,String> params = getRequestParams();
 		orderField = params.get("orderField");
 		if(orderField==null) orderField="";
+		
 		orderDirection = params.get("orderDirection");
 		if(orderDirection==null) orderDirection="";
+		
 		SessionDao sessionDao = new SessionDao(dbName);
         list = sessionDao.Search(pageNum,pageSize,username.trim(),orderField,orderDirection);
 		totalRows = sessionDao.totalRows;

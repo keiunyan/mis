@@ -1,10 +1,13 @@
+<!-- 
+功能： 三家银行的大额、小额和超级网银的笔数
+ -->
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %> 
-
 
 <c:set var="WorkDate" value="${param.WorkDate}" scope="request" />
 
@@ -45,8 +48,8 @@
 </c:set>
 
 <sql:query dataSource="${conn}" sql="${sql}" var="rs">
-	<sql:param value="${WorkDate}"/>
-	<sql:param value="${WorkDate}"/>
+	<sql:param value="${WorkDate}"/> <!-- 第1个参数 -->
+	<sql:param value="${WorkDate}"/> <!-- 第2个参数 -->
 </sql:query>
 
 
@@ -58,8 +61,8 @@
 				<tr>
 					<td>日期：</td>
 					<td>
-						<input type="text" class="date required" dateFmt="yyyyMMdd" 
-							name="WorkDate" value="${WorkDate}" 
+						<input type="text" class="date required" 
+							dateFmt="yyyyMMdd" name="WorkDate" value="${WorkDate}" 
 							minDate="2000-01-01" maxDate="2099-12-31" />
 						<span class="info">格式：yyyymmdd</span>
 					</td>

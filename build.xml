@@ -3,14 +3,12 @@
               Any modifications will be overwritten.
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. -->
-<project basedir="." default="build" name="mis">
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="mis">
     <property environment="env"/>
-    <property name="ECLIPSE_HOME" value="D:/APP/Eclipse_Neon"/>
+    <property name="ECLIPSE_HOME" value="D:/APP/Eclipse_Neon/"/>
     <property name="debuglevel" value="source,lines,vars"/>
-    <property name="target" value="1.6"/>
-    <property name="source" value="1.6"/>
-	<property name="encoding" value="UTF-8"/>
+    <property name="target" value="1.7"/>
+    <property name="source" value="1.7"/>
     <path id="Apache Tomcat v7.0 [Apache Tomcat v7.0].libraryclasspath">
         <pathelement location="D:/APP/tomcat7/lib/annotations-api.jar"/>
         <pathelement location="D:/APP/tomcat7/lib/catalina-ant.jar"/>
@@ -57,6 +55,7 @@
         <pathelement location="WebContent/WEB-INF/lib/connector.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/dom4j-1.6.1.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/freemarker-2.3.19.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/gson-2.3.1.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/javassist-3.11.0.GA.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/jaxen-1.1-beta-6.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/log4j-1.2.17.jar"/>
@@ -95,8 +94,7 @@
     <target name="build-subprojects"/>
     <target depends="init" name="build-project">
         <echo message="${ant.project.name}: ${ant.file}"/>
-        <javac debug="true" debuglevel="${debuglevel}" destdir="build/classes" includeantruntime="false" source="${source}" 
-        	target="${target}" encoding="${encoding}">
+        <javac debug="true" debuglevel="${debuglevel}" destdir="build/classes" includeantruntime="false" source="${source}" target="${target}">
             <src path="src"/>
             <classpath refid="mis.classpath"/>
         </javac>
