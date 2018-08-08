@@ -30,8 +30,8 @@ public class AlipayDetailAction extends MisAction{
 		endDate = df.format(now);        // 默认取当前日期
 		
 		GregorianCalendar gc=new GregorianCalendar(); 
-		gc.add(5,-30);
-		beginDate = df.format(gc.getTime());  // 30天前日期
+		gc.add(5,-7);
+		beginDate = df.format(gc.getTime());  // 7天前日期,默认查询最近一周的数据
 		
 		return super.execute();
 	}

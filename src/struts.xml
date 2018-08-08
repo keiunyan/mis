@@ -7,7 +7,7 @@
 	<constant name="struts.ui.theme" value="simple" />
 	<constant name="struts.locale" value="zh_CN"/> 
 	<constant name="struts.i18n.encoding" value="UTF-8"/>
-	
+
 	<package name="default" namespace="/" extends="struts-default">
 		<!-- 以下4行配置默认的action处理，当找不到action的时候就跳转到 undefined.jsp页面 -->
 		<default-action-ref name="undefined"></default-action-ref>

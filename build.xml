@@ -7,31 +7,8 @@
     <property environment="env"/>
     <property name="ECLIPSE_HOME" value="D:/APP/Eclipse_Neon/"/>
     <property name="debuglevel" value="source,lines,vars"/>
-    <property name="target" value="1.7"/>
-    <property name="source" value="1.7"/>
-    <path id="Apache Tomcat v7.0 [Apache Tomcat v7.0].libraryclasspath">
-        <pathelement location="D:/APP/tomcat7/lib/annotations-api.jar"/>
-        <pathelement location="D:/APP/tomcat7/lib/catalina-ant.jar"/>
-        <pathelement location="D:/APP/tomcat7/lib/catalina-ha.jar"/>
-        <pathelement location="D:/APP/tomcat7/lib/catalina-tribes.jar"/>
-        <pathelement location="D:/APP/tomcat7/lib/catalina.jar"/>
-        <pathelement location="D:/APP/tomcat7/lib/ecj-4.4.jar"/>
-        <pathelement location="D:/APP/tomcat7/lib/el-api.jar"/>
-        <pathelement location="D:/APP/tomcat7/lib/jasper-el.jar"/>
-        <pathelement location="D:/APP/tomcat7/lib/jasper.jar"/>
-        <pathelement location="D:/APP/tomcat7/lib/jsp-api.jar"/>
-        <pathelement location="D:/APP/tomcat7/lib/servlet-api.jar"/>
-        <pathelement location="D:/APP/tomcat7/lib/tomcat-api.jar"/>
-        <pathelement location="D:/APP/tomcat7/lib/tomcat-coyote.jar"/>
-        <pathelement location="D:/APP/tomcat7/lib/tomcat-dbcp.jar"/>
-        <pathelement location="D:/APP/tomcat7/lib/tomcat-i18n-es.jar"/>
-        <pathelement location="D:/APP/tomcat7/lib/tomcat-i18n-fr.jar"/>
-        <pathelement location="D:/APP/tomcat7/lib/tomcat-i18n-ja.jar"/>
-        <pathelement location="D:/APP/tomcat7/lib/tomcat-jdbc.jar"/>
-        <pathelement location="D:/APP/tomcat7/lib/tomcat-util.jar"/>
-        <pathelement location="D:/APP/tomcat7/lib/tomcat7-websocket.jar"/>
-        <pathelement location="D:/APP/tomcat7/lib/websocket-api.jar"/>
-    </path>
+    <property name="target" value="1.8"/>
+    <property name="source" value="1.8"/>
     <path id="Web App Libraries.libraryclasspath">
         <pathelement location="WebContent/WEB-INF/lib/com.ibm.mq.commonservices.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/com.ibm.mq.defaultconfig.jar"/>
@@ -72,11 +49,38 @@
         <pathelement location="WebContent/WEB-INF/classes"/>
     </path>
     <path id="EAR Libraries.libraryclasspath"/>
+    <path id="Apache Tomcat v8.5 [Apache Tomcat v8.5].libraryclasspath">
+        <pathelement location="D:/APP/tomcat8/lib/annotations-api.jar"/>
+        <pathelement location="D:/APP/tomcat8/lib/catalina-ant.jar"/>
+        <pathelement location="D:/APP/tomcat8/lib/catalina-ha.jar"/>
+        <pathelement location="D:/APP/tomcat8/lib/catalina-storeconfig.jar"/>
+        <pathelement location="D:/APP/tomcat8/lib/catalina-tribes.jar"/>
+        <pathelement location="D:/APP/tomcat8/lib/catalina.jar"/>
+        <pathelement location="D:/APP/tomcat8/lib/ecj-4.5.1.jar"/>
+        <pathelement location="D:/APP/tomcat8/lib/el-api.jar"/>
+        <pathelement location="D:/APP/tomcat8/lib/jasper-el.jar"/>
+        <pathelement location="D:/APP/tomcat8/lib/jasper.jar"/>
+        <pathelement location="D:/APP/tomcat8/lib/jaspic-api.jar"/>
+        <pathelement location="D:/APP/tomcat8/lib/jsp-api.jar"/>
+        <pathelement location="D:/APP/tomcat8/lib/servlet-api.jar"/>
+        <pathelement location="D:/APP/tomcat8/lib/tomcat-api.jar"/>
+        <pathelement location="D:/APP/tomcat8/lib/tomcat-coyote.jar"/>
+        <pathelement location="D:/APP/tomcat8/lib/tomcat-dbcp.jar"/>
+        <pathelement location="D:/APP/tomcat8/lib/tomcat-i18n-es.jar"/>
+        <pathelement location="D:/APP/tomcat8/lib/tomcat-i18n-fr.jar"/>
+        <pathelement location="D:/APP/tomcat8/lib/tomcat-i18n-ja.jar"/>
+        <pathelement location="D:/APP/tomcat8/lib/tomcat-jdbc.jar"/>
+        <pathelement location="D:/APP/tomcat8/lib/tomcat-jni.jar"/>
+        <pathelement location="D:/APP/tomcat8/lib/tomcat-util-scan.jar"/>
+        <pathelement location="D:/APP/tomcat8/lib/tomcat-util.jar"/>
+        <pathelement location="D:/APP/tomcat8/lib/tomcat-websocket.jar"/>
+        <pathelement location="D:/APP/tomcat8/lib/websocket-api.jar"/>
+    </path>
     <path id="mis.classpath">
         <pathelement location="build/classes"/>
-        <path refid="Apache Tomcat v7.0 [Apache Tomcat v7.0].libraryclasspath"/>
         <path refid="Web App Libraries.libraryclasspath"/>
         <path refid="EAR Libraries.libraryclasspath"/>
+        <path refid="Apache Tomcat v8.5 [Apache Tomcat v8.5].libraryclasspath"/>
     </path>
     <target name="init">
         <mkdir dir="build/classes"/>

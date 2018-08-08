@@ -31913,3 +31913,91 @@ Caused by: java.sql.SQLException: 无效的列索引
 [2017-09-28 11:01:19,478][INFO ][com.jzctb.mis.filter.LoginFilter.doFilter(LoginFilter.java:48)] - servletRequest.getContextPath() = [/mis]
 [2017-09-28 11:01:20,135][INFO ][com.jzctb.mis.filter.LoginFilter.doFilter(LoginFilter.java:45)] - servletRequest.getRequestURI() = [/mis/view/Query1001.do]
 [2017-09-28 11:01:20,135][INFO ][com.jzctb.mis.filter.LoginFilter.doFilter(LoginFilter.java:48)] - servletRequest.getContextPath() = [/mis]
+[2018-06-15 15:00:27,116][INFO ][com.jzctb.mis.filter.LoginFilter.doFilter(LoginFilter.java:45)] - servletRequest.getRequestURI() = [/mis/admin/Tablespace.do]
+[2018-06-15 15:00:27,134][INFO ][com.jzctb.mis.filter.LoginFilter.doFilter(LoginFilter.java:48)] - servletRequest.getContextPath() = [/mis]
+[2018-06-15 15:00:39,859][INFO ][com.jzctb.mis.filter.LoginFilter.doFilter(LoginFilter.java:45)] - servletRequest.getRequestURI() = [/mis/admin/Diskgroup.do]
+[2018-06-15 15:00:39,859][INFO ][com.jzctb.mis.filter.LoginFilter.doFilter(LoginFilter.java:48)] - servletRequest.getContextPath() = [/mis]
+[2018-06-15 15:00:41,667][INFO ][com.jzctb.mis.filter.LoginFilter.doFilter(LoginFilter.java:45)] - servletRequest.getRequestURI() = [/mis/admin/DiskgroupSearch.do]
+[2018-06-15 15:00:41,667][INFO ][com.jzctb.mis.filter.LoginFilter.doFilter(LoginFilter.java:48)] - servletRequest.getContextPath() = [/mis]
+[2018-06-15 15:00:41,699][DEBUG][com.jzctb.mis.db.MisDao.getSql(MisDao.java:34)] - sqlId = [diskgroup]
+[2018-06-15 15:00:41,700][DEBUG][com.jzctb.mis.db.DiskgroupDao.Search(DiskgroupDao.java:28)] - SQL = [   	select t.name,
+       t.state,
+       t.type,
+       t.sector_size,
+       t.block_size,
+       t.allocation_unit_size,
+       t.total_mb,
+       t.free_mb,
+       t.required_mirror_free_mb,
+       t.usable_file_mb,
+       t.offline_disks,
+       t.voting_files
+ 		from v$asm_diskgroup t
+]
+[2018-06-15 15:00:41,700][DEBUG][com.jzctb.mis.db.ConnectManager.getConnection(ConnectManager.java:55)] - dbname = [mis]
+[2018-06-15 15:00:41,733][DEBUG][com.jzctb.mis.encrypt.DESUtil.decryptStr(DESUtil.java:121)] - hex = [F4DAA3D91E72CD3A]
+[2018-06-15 15:00:41,878][DEBUG][com.jzctb.mis.db.ConnectManager.getConnection(ConnectManager.java:73)] - dburl=[jdbc:oracle:thin:@188.177.155.26:1521/test1] username=[misdb] passwd=[********]
+[2018-06-15 15:00:43,562][INFO ][com.jzctb.mis.filter.LoginFilter.doFilter(LoginFilter.java:45)] - servletRequest.getRequestURI() = [/mis/admin/Session.do]
+[2018-06-15 15:00:43,563][INFO ][com.jzctb.mis.filter.LoginFilter.doFilter(LoginFilter.java:48)] - servletRequest.getContextPath() = [/mis]
+[2018-06-15 15:00:48,243][INFO ][com.jzctb.mis.filter.LoginFilter.doFilter(LoginFilter.java:45)] - servletRequest.getRequestURI() = [/mis/admin/SessionSearch.do]
+[2018-06-15 15:00:48,243][INFO ][com.jzctb.mis.filter.LoginFilter.doFilter(LoginFilter.java:48)] - servletRequest.getContextPath() = [/mis]
+[2018-06-15 15:00:48,263][DEBUG][com.jzctb.mis.action.MisAction.getRequestParams(MisAction.java:122)] - params: pageSize=[20]
+[2018-06-15 15:00:48,264][DEBUG][com.jzctb.mis.action.MisAction.getRequestParams(MisAction.java:122)] - params: orderField=[]
+[2018-06-15 15:00:48,265][DEBUG][com.jzctb.mis.action.MisAction.getRequestParams(MisAction.java:122)] - params: orderDirection=[]
+[2018-06-15 15:00:48,271][DEBUG][com.jzctb.mis.action.MisAction.getRequestParams(MisAction.java:122)] - params: dbName=[test1]
+[2018-06-15 15:00:48,272][DEBUG][com.jzctb.mis.action.MisAction.getRequestParams(MisAction.java:122)] - params: username=[]
+[2018-06-15 15:00:48,275][DEBUG][com.jzctb.mis.db.MisDao.getSql(MisDao.java:34)] - sqlId = [session]
+[2018-06-15 15:00:48,276][DEBUG][com.jzctb.mis.db.SessionDao.Search(SessionDao.java:28)] - SQL = [	select *
+	  from (select sid,serial#,sql_id,username,
+             case
+               when status = 'active' then
+                last_call_et
+               else
+                null
+             end "seconds in wait",
+             b.command_name "command",
+             machine,osuser,status,module,action,resource_consumer_group,
+             client_info,client_identifier,inst_id
+        from gv$session a
+        left join v$sqlcommand b
+          on a.command = b.command_type
+       order by 3) t where username like upper(?) ]
+[2018-06-15 15:00:48,276][DEBUG][com.jzctb.mis.db.ConnectManager.getConnection(ConnectManager.java:55)] - dbname = [test1]
+[2018-06-15 15:00:48,279][DEBUG][com.jzctb.mis.encrypt.DESUtil.decryptStr(DESUtil.java:121)] - hex = [81F87889ADDF9DA6204A2CF39A4D2842]
+[2018-06-15 15:00:48,280][DEBUG][com.jzctb.mis.db.ConnectManager.getConnection(ConnectManager.java:73)] - dburl=[jdbc:oracle:thin:@188.177.155.26:1521/test1] username=[system] passwd=[********]
+[2018-06-15 15:00:55,732][INFO ][com.jzctb.mis.filter.LoginFilter.doFilter(LoginFilter.java:45)] - servletRequest.getRequestURI() = [/mis/admin/Locked.do]
+[2018-06-15 15:00:55,732][INFO ][com.jzctb.mis.filter.LoginFilter.doFilter(LoginFilter.java:48)] - servletRequest.getContextPath() = [/mis]
+[2018-06-15 15:00:57,906][INFO ][com.jzctb.mis.filter.LoginFilter.doFilter(LoginFilter.java:45)] - servletRequest.getRequestURI() = [/mis/admin/DBUser.do]
+[2018-06-15 15:00:57,907][INFO ][com.jzctb.mis.filter.LoginFilter.doFilter(LoginFilter.java:48)] - servletRequest.getContextPath() = [/mis]
+[2018-06-15 15:00:58,679][INFO ][com.jzctb.mis.filter.LoginFilter.doFilter(LoginFilter.java:45)] - servletRequest.getRequestURI() = [/mis/admin/Datafile.do]
+[2018-06-15 15:00:58,679][INFO ][com.jzctb.mis.filter.LoginFilter.doFilter(LoginFilter.java:48)] - servletRequest.getContextPath() = [/mis]
+[2018-06-15 15:00:59,522][INFO ][com.jzctb.mis.filter.LoginFilter.doFilter(LoginFilter.java:45)] - servletRequest.getRequestURI() = [/mis/admin/Tablespace.do]
+[2018-06-15 15:00:59,522][INFO ][com.jzctb.mis.filter.LoginFilter.doFilter(LoginFilter.java:48)] - servletRequest.getContextPath() = [/mis]
+[2018-06-15 15:01:00,251][INFO ][com.jzctb.mis.filter.LoginFilter.doFilter(LoginFilter.java:45)] - servletRequest.getRequestURI() = [/mis/admin/Session.do]
+[2018-06-15 15:01:00,252][INFO ][com.jzctb.mis.filter.LoginFilter.doFilter(LoginFilter.java:48)] - servletRequest.getContextPath() = [/mis]
+[2018-06-15 15:01:12,057][INFO ][com.jzctb.mis.filter.LoginFilter.doFilter(LoginFilter.java:45)] - servletRequest.getRequestURI() = [/mis/admin/SessionSearch.do]
+[2018-06-15 15:01:12,058][INFO ][com.jzctb.mis.filter.LoginFilter.doFilter(LoginFilter.java:48)] - servletRequest.getContextPath() = [/mis]
+[2018-06-15 15:01:12,060][DEBUG][com.jzctb.mis.action.MisAction.getRequestParams(MisAction.java:122)] - params: pageSize=[20]
+[2018-06-15 15:01:12,060][DEBUG][com.jzctb.mis.action.MisAction.getRequestParams(MisAction.java:122)] - params: orderField=[]
+[2018-06-15 15:01:12,061][DEBUG][com.jzctb.mis.action.MisAction.getRequestParams(MisAction.java:122)] - params: orderDirection=[]
+[2018-06-15 15:01:12,061][DEBUG][com.jzctb.mis.action.MisAction.getRequestParams(MisAction.java:122)] - params: dbName=[test1]
+[2018-06-15 15:01:12,061][DEBUG][com.jzctb.mis.action.MisAction.getRequestParams(MisAction.java:122)] - params: username=[]
+[2018-06-15 15:01:12,064][DEBUG][com.jzctb.mis.db.MisDao.getSql(MisDao.java:34)] - sqlId = [session]
+[2018-06-15 15:01:12,064][DEBUG][com.jzctb.mis.db.SessionDao.Search(SessionDao.java:28)] - SQL = [	select *
+	  from (select sid,serial#,sql_id,username,
+             case
+               when status = 'active' then
+                last_call_et
+               else
+                null
+             end "seconds in wait",
+             b.command_name "command",
+             machine,osuser,status,module,action,resource_consumer_group,
+             client_info,client_identifier,inst_id
+        from gv$session a
+        left join v$sqlcommand b
+          on a.command = b.command_type
+       order by 3) t where username like upper(?) ]
+[2018-06-15 15:01:12,065][DEBUG][com.jzctb.mis.db.ConnectManager.getConnection(ConnectManager.java:55)] - dbname = [test1]
+[2018-06-15 15:01:12,067][DEBUG][com.jzctb.mis.encrypt.DESUtil.decryptStr(DESUtil.java:121)] - hex = [81F87889ADDF9DA6204A2CF39A4D2842]
+[2018-06-15 15:01:12,068][DEBUG][com.jzctb.mis.db.ConnectManager.getConnection(ConnectManager.java:73)] - dburl=[jdbc:oracle:thin:@188.177.155.26:1521/test1] username=[system] passwd=[********]
